@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+/* colors */
+:root{
+    --theme-color: #f38065;
+    --white:#fff;
+    --medium-black:#221f1f;
+    --black:#000;
+    --hover:#fbf5f3;
+    --light-theme:#f7f1ef;
+    --hover2:#484848;
+    --bg-color:#fbf5f3;
+    --text-color:#646469;
+    --theme-color-alpha: #f38065;
+    --theme-color-extra-alpha: #f3745678;
+  }
+  /* colors end */
+  .form-control:focus,.form-select:focus,button:focus{
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  .form-control.is-valid:focus, .was-validated .form-control:valid:focus,.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus{
+    outline: none;
+    box-shadow: none;
+  }
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+  body {
+    background: var(--white);
+    margin: 0;
+    padding: 0;
+    font-family: 'Yantramanav', sans-serif;
+    font-size: 15px;
+    color: var(--medium-black);
+    line-height: 1.6;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    height: calc(var(--vh, 1vh) * 100);
+  
+  }
+  html {
+  
+      overflow: hidden;
+    overflow-y: auto;
+  }
+  nav, section {
+    display: block;
+  }
+  p {
+    margin: 0px 0px 10px;
+    padding: 0px; 
+  }
+  a, button {
+    line-height: inherit;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+  }
+  a:hover{ 
+    color:var(--theme-color);
+    text-decoration: none;
+  }
+  ul,ol {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  .form-control:hover,input:hover,input:focus{
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  .p60{padding: 60px 0px;}
+  .p40{padding: 40px 0px;}
+  .container{max-width: 1600px}
+  
