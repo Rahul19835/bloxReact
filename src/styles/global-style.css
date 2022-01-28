@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 /* colors */
 :root{
     --theme-color: #f38065;
@@ -14,6 +13,38 @@
     --theme-color-extra-alpha: #f3745678;
   }
   /* colors end */
+  /* fonts */
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Black.ttf");
+  font-weight: 900;
+}
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SF-Pro-Display';
+  src: url("../fonts/Yantramanav-Thin.ttf");
+  font-weight: 100;
+}
+/* fonts end */
   .form-control:focus,.form-select:focus,button:focus{
     outline: none !important;
     box-shadow: none !important;
@@ -38,6 +69,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Yantramanav', sans-serif;
+    font-weight: 400;
     font-size: 15px;
     color: var(--medium-black);
     line-height: 1.6;
@@ -89,4 +121,8 @@
   .p60{padding: 60px 0px;}
   .p40{padding: 40px 0px;}
   .container{max-width: 1600px}
-  
+  .icon{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+  }

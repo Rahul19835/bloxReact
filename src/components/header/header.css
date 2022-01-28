@@ -32,6 +32,10 @@ header .header-logo{
    -o-transition: all .7s ease;
    transition: all .7s ease;
 }
+.hlogo {
+    display: flex;
+    align-items: center;
+}
 .hlogo span.version{
   margin-left: 8px;
   color: var(--theme-color);
@@ -196,4 +200,33 @@ header.fixed .header-logo{
 .cal-btn a.reg:hover{
    background: var(--hover2);
   color: var(--white)
+}
+.hshort a{
+    display: flex;
+    font-size: 25px;
+    line-height: 0;
+}
+.hshort a .short{
+    position: relative;
+    margin-left: 5px;
+    color: var(--bs-gray-700);
+}
+.hshort a .short:hover{
+    color: var(--black);
+}
+.hshort a .short span{
+    position: absolute;
+    line-height: 15px;
+    background: var(--theme-color);
+    color: var(--white);
+    font-size: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    right: -8px;
+    text-align: center;
+    top:0;
+}
+.header-icon{
+    width: 26px;
 }
