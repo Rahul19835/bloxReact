@@ -2,9 +2,7 @@ header{
     padding: 8px 0px;
     width: 100%;
     box-shadow: 0px 1px 20px #b1b1b130;
-    position: fixed;
     width: 100%;
-    z-index: 99;
     transition: all ease-in-out 0.8s;
     background: var(--white);
     top:0;
