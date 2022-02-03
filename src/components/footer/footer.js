@@ -12,7 +12,7 @@ const Footer = () =>{
                     <div className="col-md-4 col-12">
                         <div className="fqlo">
                             <div className="qr">
-                                <img src={companyqr} alt="Blox" class="img-fluid" />
+                                <img src={companyqr} alt="Blox" className="img-fluid" />
                             </div>
                             <div>
                             <div className="flogo">
@@ -20,7 +20,7 @@ const Footer = () =>{
                                     <img src={logo} alt="Blox" className="img-fluid" />
                                 </Link>
                             </div>
-                            <div class="reraid">
+                            <div className="reraid">
                                 <strong>RERA ID: A51900029429</strong>
                             </div>
                             <div className="fsocial">
@@ -36,12 +36,12 @@ const Footer = () =>{
                             </div>
                             </div>
                         </div>
-                        <div class="copyright">
-                            <span>&copy; Copyright 2022 blox.xyz | All right reserved</span>
+                        <div className="copyright">
+                            <span>&copy; Copyright {(new Date().getFullYear())} blox.xyz | All right reserved</span>
                         </div>
                     </div>
-                    <div class="col-md-4 col-6">
-                        <div class="fmenu">
+                    <div className="col-md-4 col-6">
+                        <div className="fmenu">
                         <ul>
                             <li><Link to="#">About Us</Link></li>
                             <li><Link to="#">News</Link></li>
@@ -51,8 +51,8 @@ const Footer = () =>{
                         </ul>
                         </div>
                     </div>
-                    <div class="col-md-4 col-6">
-                        <div class="fmenu">
+                    <div className="col-md-4 col-6">
+                        <div className="fmenu">
                         <ul>
                             <li><Link to="#">Privacy</Link></li>
                             <li><Link to="#">Terms & Conditions</Link></li>

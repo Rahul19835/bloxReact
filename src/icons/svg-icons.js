@@ -4,9 +4,20 @@ const lock = '<svg fill="var(--black)" xmlns="http://www.w3.org/2000/svg" xml:sp
 
 const user = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 60 60"><path fill="var(--theme-color)" d="M20 8.38h20.84v20.84H20z"/><path fill="var(--white)" d="M57.97 51.56H2.86c.51-2.32.78-4.48 1.48-6.49 2.59-7.49 10.08-12.54 17.99-12.41 4.98.08 9.96.1 14.94-.04 7.98-.22 14.17 2.85 18.34 9.7 1.67 2.76 2.46 5.81 2.36 9.24z"/></svg>'
 
+const homesearch = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 64 64"><path d="m55.39 52.83-5.57 5.57-9.97-9.97-1.59-1.59c2.37-1.24 4.32-3.19 5.57-5.56l11.56 11.55z" class="st0"/><path d="M27.83 7.9c-11.58 0-20.97 9.38-20.97 20.97 0 11.57 9.38 20.97 20.97 20.97 3.85 0 7.45-1.03 10.54-2.84 3.14-1.83 5.76-4.45 7.58-7.59 1.81-3.09 2.84-6.69 2.84-10.53C48.8 17.29 39.41 7.9 27.83 7.9zm8.38 36.93c-2.5 1.32-5.35 2.07-8.38 2.07-9.96 0-18.03-8.07-18.03-18.03s8.07-18.04 18.03-18.04 18.03 8.08 18.03 18.04c0 3.03-.75 5.87-2.06 8.38-1.7 3.23-4.35 5.88-7.59 7.58z" class="st0"/><path fill="var(--theme-color)" d="M21.9 28.53h12.98v12.98H21.9z"/><path d="m34.33 20.12-5.95-6.47-5.94 6.47-5.95 6.47v14.92h5.41V28.53h12.97v12.98h5.41V26.59z" class="st0"/></svg>'
+
+const location = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 60 60"><path d="M30.1 54.6 45 32.8H15.2l14.9 21.8c5-7.2 10.1-14.4 15.1-21.6H15.1l15 21.6z" class="st0"/><circle cx="30.2" cy="22.4" r="18.4" class="st0"/><path fill="var(--theme-color)" d="M22.7 14.9h15v15h-15z"/></svg>'
+
+const agreement = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 60 60"><path d="M21.4 13.9h18.9v34L16 43.3z" class="st0"/><path d="m53.4 11.4-7 37.6-4.4-.8V12.3H21.7l1.2-6.6z" class="st0"/><path d="M11 13.9h29.3v36.6H11z" class="st0"/><path d="M9.3 13.9h31v38.3h-31z" class="st0"/><path fill="var(--theme-color)" d="M24.8 36.5h13v13h-13z"/><path d="M12.3 22.5h24.6m-24.6 6h24.6" class="st2"/></svg>'
+
+const finance = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 60 60"><path fill="#231f20" d="M55.451 10.683v32.1h-51.5v-32.1z"/><path fill="var(--theme-color)" d="M40.5 27.7h15v15h-15z"/><path fill="#fff" d="M56.359 17.711v4.1h-52.4v-4.1z"/></svg>'
 
 module.exports = {
     'phone': phone,
     'lock': lock,
-    'user': user
+    'user': user,
+    'homesearch': homesearch,
+    'location': location,
+    'agreement': agreement,
+    'finance': finance
 }

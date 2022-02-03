@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import './header.css';
 import {phone, lock, user} from '../../icons/svg-icons';
 import logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
-
+import Modal from '../../components/popup/popup';
 
 const Header = () =>{
+    const [isOpen, setIsOpen] = useState(false);
+    const [popupType, setPopupType] = useState();
+
+    const togglePopup = (type) => {
+        setIsOpen(!isOpen);
+    }
     return(
+        <>
         <header>
             <div className="container">
                 <div className="row align-items-center justify-content-between">
@@ -40,9 +47,9 @@ const Header = () =>{
                                 <a href="tel:+91-8291933333"><i className="icon header-icon" dangerouslySetInnerHTML={{__html: phone}}></i><span>+91-8291933333</span></a>
                             </div>
                             <div className="cal-btn">  
-                                <a href="javascript:void(0);" className="login"><i className="icon" dangerouslySetInnerHTML={{__html: lock}}></i> <span>Login</span></a>
+                                <a onClick={() => togglePopup('login')} className="login"><i className="icon" dangerouslySetInnerHTML={{__html: lock}}></i> <span>Login</span></a>
                     
-                                <a href="javascript:void(0);" className="reg"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i> <span>Register</span></a>
+                                <a onClick={() => togglePopup('Register')} href="#" className="reg"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i> <span>Register</span></a>
                             </div>
                         </div>
                     </div>
@@ -52,6 +59,8 @@ const Header = () =>{
             </div>
             
         </header>
+        {isOpen && <Modal handleClose={togglePopup} PopupType={popupType} />}
+        </>
     )
 }
 export default Header;
