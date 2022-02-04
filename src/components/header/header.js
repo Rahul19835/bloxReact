@@ -10,6 +10,7 @@ const Header = () =>{
     const [popupType, setPopupType] = useState();
 
     const togglePopup = (type) => {
+        setPopupType(type);
         setIsOpen(!isOpen);
     }
     return(

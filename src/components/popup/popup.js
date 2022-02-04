@@ -9,6 +9,8 @@ import googleicon from '../../images/google.png';
 
 
 const Popup = (props) =>{
+    const [creatingAccount, setCreatingAccount] = useState(false);
+    const [btntext, setbtntext] = useState(false);
     return(
         <>
         <div className="popup-box">
@@ -25,8 +27,12 @@ const Popup = (props) =>{
                                 </ul>
                             </div>
                             <div>
-                                <p>New To Blox?</p>
-                                <span className="popupleftbtn"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i> Create an account</span>
+                                {creatingAccount?
+                                    <p>{props.PopupType == "login"? "Already have an Account?": "New To Blox?"}</p>
+                                    :
+                                    <p>{props.PopupType == "Register"? "Already have an Account?": "New To Blox?"}</p>
+                                }
+                                <span onClick={()=>{setCreatingAccount(!creatingAccount);setbtntext(!btntext);} } className="popupleftbtn"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i>{props.PopupType == "Register"? "Login": "Create an account"}</span>
                             </div>
                         </div>
                     </div>
@@ -39,6 +45,7 @@ const Popup = (props) =>{
                                     <img src={accounticon} alt="Register" className="img-fluid" />
                                 </div>
                                 <form>
+
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend p-0">
                                             <div className="flagIn">
@@ -49,14 +56,14 @@ const Popup = (props) =>{
                                         <input type="text" className="form-control" id="lemail" placeholder="Email/Phone" />
                                     </div>
                                     <div className="btn-sec">
-                                        <button type="submit" id="email_continue_btn" className="btn sub-btn text-left">Login</button>
+                                        <button type="submit" id="email_continue_btn" className="btn sub-btn text-left">Continue</button>
                                     </div>
                                 </form>
-                                <span class="or">or Log In with</span>
+                                <span className="or">or Log In with</span>
                             </div>
-                            <div class="social-login">
-                                <a href="#" class="fblog"><div className="icon"><img src={fbicon} class="img-fluid" /></div>Log In with Facebook</a>
-                                <a href="#" class="glog" id="glog"><div className="icon"><img src={googleicon} class="img-fluid" /></div>Log In with Google</a>
+                            <div className="social-login">
+                                <a href="#" className="fblog"><div className="icon"><img src={fbicon} className="img-fluid" /></div>Log In with Facebook</a>
+                                <a href="#" className="glog" id="glog"><div className="icon"><img src={googleicon} className="img-fluid" /></div>Log In with Google</a>
                             </div>
                         </div>
                     </div>

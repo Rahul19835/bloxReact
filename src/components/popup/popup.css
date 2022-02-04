@@ -111,6 +111,7 @@
   padding: 8px 20px;
   text-transform: uppercase;
   display: inline-block;
+  cursor: pointer;
 }
 .popupleftbtn i svg{
   --white: var(--black);
@@ -156,6 +157,7 @@
 }
 .intl-tel-input.allow-dropdown.separate-dial-code .selected-dial-code{
   padding-left: 6px !important;
+  pointer-events: none;
 }
 .intl-tel-input{
   height: 100%;
