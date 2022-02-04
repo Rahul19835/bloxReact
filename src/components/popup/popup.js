@@ -32,6 +32,11 @@ const Popup = (props) =>{
                                     :
                                     <p>{props.PopupType == "Register"? "Already have an Account?": "New To Blox?"}</p>
                                 }
+                                {btntext?
+                                    {props.PopupType == "login"? "Already have an Account?": "New To Blox?"}</p>
+                                    :
+                                    {props.PopupType == "Register"? "Login": "Create an account"}</p>
+                                }
                                 <span onClick={()=>{setCreatingAccount(!creatingAccount);setbtntext(!btntext);} } className="popupleftbtn"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i>{props.PopupType == "Register"? "Login": "Create an account"}</span>
                             </div>
                         </div>
