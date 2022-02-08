@@ -163,3 +163,24 @@
   border: 1px solid var(--medium-black);
   color: var(--white);
 }
+.inputIcon{
+  height: 100%;
+  background: var(--gray);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+}
+.inputIcon i{
+  font-size: 22px;
+}
+.inputIcon:after{
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 60%;
+  background: #dad9d8;
+  right: 1px;
+  z-index: -1;
+}
