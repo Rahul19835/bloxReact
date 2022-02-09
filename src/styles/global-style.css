@@ -184,3 +184,33 @@
   right: 1px;
   z-index: -1;
 }
+.btn{
+  border: 2px solid;
+  border-color: transparent;
+  text-align: center;
+  padding: 10px 10px;
+  font-size: 14px;
+  pointer-events: all;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+  border-radius: 0px;
+  transition: .5s ease;
+}
+.site-btn{
+  background-color: var(--medium-black);
+  color: var(--white);
+}
+.site-btn:hover{
+  border-color: var(--medium-black);
+  color: var(--medium-black);
+  background-color: transparent;
+}
+.site-btn2{
+  border-color: var(--theme-color);
+  color: var(--theme-color);
+}
+.site-btn2:hover{
+  background-color: var(--theme-color);
+  color: var(--white);
+}

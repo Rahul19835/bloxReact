@@ -4,32 +4,76 @@ import './home.css';
 import banner from '../../images/banner.jpg';
 import Search from "../../components/search/search";
 import {homesearch, location, agreement, finance, developer, seller, clicks, sale} from '../../icons/svg-icons';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from "swiper";
+import 'swiper/css';
 
  const execluveData = [
      {  
-        img: '',
+        project_id: '1', 
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Kolte-Patil_Developers_Limited-Kolte-Patil_Jai_Vijay--Bedroom-1636967962.jpg',
         name: 'Kanakia Future City',
         location: 'MUMBAI',
         price: '₹1.72 Cr - ₹2.95 Cr',
         flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
         url: '',
+        stamp: ['Blox Exclusive', 'Featured', 'Under construction'],
+        city_id: '1'
      },
      {
-        img: '',
+        project_id: '2',
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Rustomjee-Rustomjee_Urbania--Bedroom-1636968497.jpg',
         name: 'Kanakia Future City1',
         location: 'MUMBAI',
         price: '₹1.72 Cr - ₹2.95 Cr',
         flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
         url: '',
-     }
-     ,
+        stamp: ['Blox Exclusive', 'Featured'],
+        city_id: '2'
+     },
      {
-        img: '',
+        project_id: '3',
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Piramal_Realty_Pvt_Ltd-Piramal_Mahalaxmi--Bedroom-1636968629.jpg',
         name: 'Kanakia Future City2',
         location: 'MUMBAI',
         price: '₹1.72 Cr - ₹2.95 Cr',
         flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
         url: '',
+        stamp: ['Blox Exclusive', 'Under construction'],
+        city_id: '3'
+     },
+     {
+        project_id: '4',
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Piramal_Realty_Pvt_Ltd-Piramal_Mahalaxmi--Bedroom-1636968629.jpg',
+        name: 'Kanakia Future City3',
+        location: 'MUMBAI',
+        price: '₹1.72 Cr - ₹2.95 Cr',
+        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
+        url: '',
+        stamp: ['Featured',],
+        city_id: '4'
+     },
+     {  
+        project_id: '1', 
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Kolte-Patil_Developers_Limited-Kolte-Patil_Jai_Vijay--Bedroom-1636967962.jpg',
+        name: 'Kanakia Future City',
+        location: 'MUMBAI',
+        price: '₹1.72 Cr - ₹2.95 Cr',
+        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
+        url: '',
+        stamp: ['Blox Exclusive', 'Featured', 'Under construction'],
+        city_id: '1'
+     },
+     {
+        project_id: '2',
+        img: 'https://blox-prod-bucket.s3.amazonaws.com/projects/Rustomjee-Rustomjee_Urbania--Bedroom-1636968497.jpg',
+        name: 'Kanakia Future City1',
+        location: 'MUMBAI',
+        price: '₹1.72 Cr - ₹2.95 Cr',
+        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
+        url: '',
+        stamp: ['Blox Exclusive', 'Featured'],
+        city_id: '2'
      }
  ]
 
@@ -147,19 +191,92 @@ const handleActive = (e) => {
                 </div>
             </section>
             {/* Execluve */}
-            {
-                execluveData.map((execluveCard)=> 
-                <Card 
-                    url={execluveCard.url}
-                    img={execluveCard.img}
-                    name={execluveCard.name} 
-                    location={execluveCard.location}
-                    price={execluveCard.price}
-                    flatTypes={execluveCard.flatTypes}
-                />
-                )
-            }
-            
+            <section className="p60 pt-0">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="heading">
+                                <div className="title">Blox Exclusive</div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div id="hprolist">
+                            <Swiper
+                                modules={[Autoplay]}
+                                loop={false}
+                                slidesPerView={3}
+                                spaceBetween={20}
+                                autoplay={{
+                                    delay: 5000,
+                                    disableOnInteraction: false,
+                                }}
+                                className="hprolist"
+                            >
+                                {execluveData.slice(0, 4).map((execluveCard, index)=> 
+                                    <SwiperSlide key={index}><Card 
+                                        url={execluveCard.url}
+                                        img={execluveCard.img}
+                                        name={execluveCard.name} 
+                                        location={execluveCard.location}
+                                        price={execluveCard.price}
+                                        flatTypes={execluveCard.flatTypes}
+                                        stamp={execluveCard.stamp}
+                                        project_id={execluveCard.project_id}
+                                        city_id={execluveCard.city_id}
+                                    /></SwiperSlide>
+                                    )
+                                }
+                            </Swiper>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* Fast Selling Project */}
+            <section className="p60 fsp">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="heading">
+                                <div className="title">Fast Selling Projects</div>
+                            </div>
+                        </div>
+                        <div className="col-12 mt-2">
+                            <div className="listproject">
+                                {execluveData.map((execluveCard, index)=> 
+                                    <list><Card key={index}
+                                        url={execluveCard.url}
+                                        img={execluveCard.img}
+                                        name={execluveCard.name} 
+                                        location={execluveCard.location}
+                                        price={execluveCard.price}
+                                        flatTypes={execluveCard.flatTypes}
+                                        stamp={execluveCard.stamp}
+                                        project_id={execluveCard.project_id}
+                                        city_id={execluveCard.city_id}
+                                    /></list>
+                                    )
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {/* Popular Projects */}
+            <section className="p60 tl">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="heading text-center">
+                                <div className="title">Popular Projects</div>
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
