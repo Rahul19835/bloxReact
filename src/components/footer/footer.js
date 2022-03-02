@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import './footer.css';
 import { Link } from "react-router-dom";
 import logo from '../../images/logo.png';
 import companyqr from '../../images/homeqrcode.svg';
+import EnquiryPopup from '../../components/popup/enquiry';
+import {EnquiryContext} from '../contaxt/enquiry';
 
 const Footer = () =>{
+    const {popupState, enqType, setEnq} = useContext(EnquiryContext);
     return(
+        <>
         <footer className="p40">
             <div className="container">
                 <div className="row">
@@ -65,6 +69,9 @@ const Footer = () =>{
                 </div>
             </div>
         </footer>
+        { popupState?<EnquiryPopup handleClose={()=>setEnq(false)} type={enqType} />:""}
+        
+        </>
     )
 }
 

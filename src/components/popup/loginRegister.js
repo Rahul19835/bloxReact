@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import './popup.css';
@@ -6,10 +6,12 @@ import {user, lock} from '../../icons/svg-icons';
 import accounticon from '../../images/regicon.png';
 import fbicon from '../../images/fblog.png';
 import googleicon from '../../images/google.png';
+import {LoginRegisterContext} from '../../components/contaxt/loginContext';
 
 
 const Popup = (props) =>{
-    const[PopupType, setPopType ] = useState(props.PopupType);
+    const {popupType} = useContext(LoginRegisterContext);
+    const[PopupType, setPopType ] = useState(popupType);
     const [creatingAccount, setCreatingAccount] = useState(PopupType);
     const [btntext, setbtntext] = useState(PopupType);
     const [titletext, setitletext] = useState(PopupType);

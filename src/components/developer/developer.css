@@ -1,0 +1,112 @@
+.devcard {
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    height: 100%;
+    width: 100%;
+}
+.devcard a {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 1rem;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+.devcard .dev-img {
+    flex-basis: 40%;
+    margin-right: 20px;
+    overflow: hidden;
+    border-radius: calc(0.25rem - 1px);
+}
+.devcard .dev-img img {
+    width: 100%;
+    height: 100%;
+    object-position: center top;
+    object-fit: cover;
+    transition: .3s ease;
+}
+
+.devcard .dev-data {
+    flex-basis: 55%;
+}
+
+.devcard .dev-data .dev-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.dev-data .dev-top .dev-logo {
+    width: 100px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: 0 2px 28px 0 rgb(0 0 0 / 9%);
+    box-shadow: 0 2px 28px 0 rgb(0 0 0 / 9%);
+    padding: 20px;
+    background: var(--white);
+}
+
+.dev-data .dev-top .dev-r {
+    display: flex;
+    align-items: flex-start;
+}
+
+.devcard .dev-data .dev-top .dev-r div:first-child {
+    margin-right: 15px;
+}
+.devcard .dev-data .dev-top .dev-r div {
+    color: var(--text-color);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.devcard .dev-data .dev-top .dev-r div span {
+    display: block;
+    width: 100%;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.devcard .dev-data .dev-title {
+    color: var(--black);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.devcard .dev-data p {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.devcard a:hover{
+    color: inherit;
+    box-shadow: 0 2px 25px 0 rgb(0 0 0 / 9%);
+}
+
+.devcard a:hover .dev-img img{
+    transform: scale(1.1);
+}

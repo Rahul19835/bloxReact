@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState, useContext} from "react";
 import './card.css';
 import { Link } from "react-router-dom";
+import {EnquiryContext} from '../contaxt/enquiry';
+
 
 const Card = (props) =>{
+    const {popupState, togglePopup} = useContext(EnquiryContext);
+   
     return(
         <>
             <div className="card">
@@ -34,12 +38,13 @@ const Card = (props) =>{
                         </div>
                     </div>
                     <div className="card-footer">
-                        <span className="btn site-btn2 contactrm" data-project_id={props.project_id}>Contact RM</span>
-                        <span className="btn site-btn bookvisit" data-project_id={props.project_id}>Book Visit Now</span>
+                        <span className="btn site-btn2 contactrm" data-project_id={props.project_id} onClick={()=>togglePopup('contact-rm')}>Contact RM</span>
+                        <span className="btn site-btn bookvisit" data-project_id={props.project_id} onClick={()=>togglePopup('visit')}>Book Visit Now</span>
                     </div>
                 </div>
             </div>
+            
         </>
     )
 }
-export default Card;
+export default Card; 

@@ -1,0 +1,114 @@
+.news-list .item {
+    padding: 0 5px;
+    padding-bottom: 30px;
+    height: 100%;
+}
+
+.news-list .item .card {
+    border: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    height: 100%;
+}
+
+.news-list .item .nimg {
+    border-radius: calc(0.25rem - 1px);
+    overflow: hidden;
+    height: 300px;
+}
+
+.news-list .item .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-position: center top;
+    object-fit: cover;
+}
+
+.news-list .item .card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.news-list .item .card-date {
+    padding-left: 50px;
+    position: relative;
+    color: var(--black);
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.news-list .item .card-date:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--black);
+}
+
+.news-list .item .card-title {
+    font-size: 20px;
+    color: var(--theme-color);
+    margin-bottom: 15px;
+    line-height: 1.3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.news-list .item .card-text {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-bottom: 20px;
+}
+
+.news-list .item span.rm {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--theme-color);
+    margin-bottom: 15px;
+    position: relative;
+    /* text-transform: uppercase; */
+}
+
+.news-list .item span.rm:after {
+    content: '\f063';
+    width: 50px;
+    height: 50px;
+    background: var(--theme-color);
+    position: absolute;
+    left: 50%;
+    top: -25px;
+    transform: translateX(-50%);
+    z-index: -1;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--theme-color);
+}

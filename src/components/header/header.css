@@ -155,7 +155,7 @@ header.fixed .header-logo{
     border: 1px solid #fff;
     display: flex;
 }
-.cal-btn a{
+.cal-btn>span{
     display: flex;
     align-items: center;
     padding: 5px 15px;
@@ -164,26 +164,29 @@ header.fixed .header-logo{
     text-transform: uppercase;
     font-weight: 500;
 }
-.cal-btn a i{
+.cal-btn>span:hover{
+  cursor: pointer;
+}
+.cal-btn span i{
   width: 14px;
   margin-right: 5px;
 }
-.cal-btn a.login{
+.cal-btn span.login{
   margin-right: 10px;
   background: transparent;
   border: 1px solid var(--theme-color);
   color: var(--theme-color);
 }
-.cal-btn a.login:hover{
+.cal-btn span.login:hover{
   background: var(--hover);
   color: var(--medium-black)
 }
-.cal-btn a.reg{
+.cal-btn span.reg{
   background: var(--medium-black);
   border: 1px solid var(--medium-black);
   color: var(--white);
 }
-.cal-btn a.reg:hover{
+.cal-btn span.reg:hover{
    background: var(--hover2);
   color: var(--white)
 }

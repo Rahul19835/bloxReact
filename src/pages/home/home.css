@@ -421,3 +421,114 @@
     top: -25px;
     z-index: -1;
 }
+
+.lo-list {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.lo-list ul{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .lo-list ul li{
+    background: transparent;
+      border: 1px solid var(--text-color);
+      color: var(--text-color);
+      padding: 6px 20px;
+      font-size: 15px;
+      pointer-events: all;
+      text-transform: capitalize;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .3s ease;
+      margin: 0 8px;
+  }
+  .lsec-left ul li a {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+  .lo-list ul li.active,  .lo-list ul li:hover{
+      background: var(--theme-color);
+      color: var(--white);
+      border:1px solid var(--theme-color);
+  }
+  .licon-sec {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.licon-sec .lsec-left {
+    flex-basis: 30%;
+    -webkit-box-shadow: 0 2px 28px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 2px 28px 0 rgb(0 0 0 / 10%);
+    background: var(--white);
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.licon-sec .lsec-right {
+    flex-basis: 70%;
+    margin-left: 20px;
+}
+
+.lsec-left ul li {
+    background: transparent;
+    color: var(--black);
+    padding: 6px 15px;
+    font-size: 14px;
+    pointer-events: all;
+    text-transform: capitalize;
+    font-weight: 500;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+  .lsec-left ul{
+    background:var(--white);
+  }
+  .lsec-left ul li span:nth-child(1){
+    font-weight: 600;
+    width: 100%;
+    font-size: 16px;
+  }
+  .lsec-left ul li:last-child{
+    border-bottom: none;
+  }
+  .lsec-left ul li.active,.lsec-left ul li:hover{
+    border-bottom:1px solid var(--theme-color);
+    background: var(--theme-color);
+    color: var(--white);
+  }
+  .lsec-left ul li.active a,.lsec-left ul li:hover a{
+      color: var(--white);
+  }
+  .lo-data {
+    margin-top: 20px;
+}
+
+.lsec-left ul li:last-child.active,.lsec-left ul li:last-child:hover{
+    border:none
+}
+
+.devp {
+    background: var(--bg-color);
+}
+
+.homedev {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px;
+    column-gap: 15px;
+    grid-row-gap: 15px;
+    row-gap: 15px;
+}

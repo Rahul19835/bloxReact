@@ -1,18 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext} from "react";
 import './header.css';
 import {phone, lock, user} from '../../icons/svg-icons';
 import logo from '../../images/logo.png';
 import { Link } from "react-router-dom";
-import Modal from '../../components/popup/popup';
+import LoginPopup from '../../components/popup/loginRegister';
+import {LoginRegisterContext} from '../../components/contaxt/loginContext';
 
 const Header = () =>{
-    const [isOpen, setIsOpen] = useState(false);
-    const [popupType, setPopupType] = useState();
-
-    const togglePopup = (type) => {
-        setPopupType(type);
-        setIsOpen(!isOpen);
-    }
+    const {loginState, popupType, setPopUp, togglePopup} = useContext(LoginRegisterContext);
     return(
         <>
         <header>
@@ -48,19 +43,16 @@ const Header = () =>{
                                 <a href="tel:+91-8291933333"><i className="icon header-icon" dangerouslySetInnerHTML={{__html: phone}}></i><span>+91-8291933333</span></a>
                             </div>
                             <div className="cal-btn">  
-                                <a onClick={() => togglePopup('login')} className="login"><i className="icon" dangerouslySetInnerHTML={{__html: lock}}></i> <span>Login</span></a>
+                                <span onClick={() => togglePopup('login')} className="login"><i className="icon" dangerouslySetInnerHTML={{__html: lock}}></i> <span>Login</span></span>
                     
-                                <a onClick={() => togglePopup('Register')} href="#" className="reg"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i> <span>Register</span></a>
+                                <span onClick={() => togglePopup('Register')}  className="reg"><i className="icon" dangerouslySetInnerHTML={{__html: user}}></i> <span>Register</span></span>
                             </div>
                         </div>
                     </div>
-                    
-                
                 </div>
             </div>
-            
         </header>
-        {isOpen && <Modal handleClose={togglePopup} PopupType={popupType} />}
+        { loginState?<LoginPopup handleClose={()=>setPopUp(false)} type={popupType} />:""}
         </>
     )
 }
