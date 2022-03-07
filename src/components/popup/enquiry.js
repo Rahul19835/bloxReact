@@ -1,39 +1,47 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import './popup.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { serverDate, schedule_timeArr } from "../../data";
+import { serverDate, schedule_timeArr,countryArr } from "../../data";
 import { Navigation } from "swiper";
-import Datelistitem from "./datelistitem";
-import Timelistitem from './timelistitem';
-import { CheckTimeContext } from "../contaxt/checktime";
+
 const EnquiryPopup = (props) =>{
-    const {selDate} = useContext(CheckTimeContext);
     const [PopupType] = useState(props.type);
     const [titletext, setTitle] = useState(PopupType);
     const [isChecked, setIsChecked] = useState(false);
+    const [newDays, setNewDays] = useState({
+        "allDays": null,
+        "active-day": null
+    });
+    const [newTime, setnewTime] = useState({
+        "alltimes": null,
+        "active-time": null
+    });
+    const [countryCode, setcountryCode] = useState(false);
 
     const handleCheck = () => {
         setIsChecked(!isChecked);
     }
-    if(PopupType != "contact-rm"){
-        console.log(selDate);
-    }
 
-    
-
-    useEffect(() => {
-        setTitle(PopupType == "contact-rm"? "Contact our Real Estate Experts": "Book Visit Now") 
+    const [inputField , setInputField] = useState({
+        "name": null,
+        "email": null,
+        "phoneNo": null,
+        "message": null,
+        "visit_type": null,
+        "ActivityDate": null,
+        "ActivityTime":null,
     });
+
 
     var daysArr = [];
     var dArr = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     var currentDate = new Date(serverDate);
     var incdate = new Date(currentDate.setDate(currentDate.getDate()));
     daysArr.push({
-        fullDate: incdate.toLocaleDateString('en-GB'),
+        fullDate: incdate.toLocaleDateString('en-GB').split('/').reverse().join('-'),
         date: incdate.getDate(),
         day: dArr[incdate.getDay()]
     })
@@ -41,11 +49,12 @@ const EnquiryPopup = (props) =>{
         currentDate = new Date(serverDate);
         incdate = new Date(currentDate.setDate(currentDate.getDate() + index));
         daysArr.push({
-            fullDate: incdate.toLocaleDateString('en-GB'),
+            fullDate: incdate.toLocaleDateString('en-GB').split('/').reverse().join('-'),
             date: incdate.getDate(),
             day: dArr[incdate.getDay()]
         })
     }
+
 
     function tConvert (time) {
         time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
@@ -70,14 +79,14 @@ const EnquiryPopup = (props) =>{
         })
     })
 
-    function checkTime(selDate) {
+    const checkTime = (selDate) => {
         var seldate = selDate;
         var newdate = new Date(serverDate);
         var cuDate = newdate.toLocaleDateString('en-GB').split('/').reverse().join('-');
         var ctime = newdate.getHours() + ":" + newdate.getMinutes() + ":" + newdate.getSeconds();
         var sliderTime = "";
         var z = 0;
-        if (seldate == cuDate) {
+        if (seldate === cuDate) {
             document.querySelectorAll('.timelist').forEach((element) => {
             sliderTime = element.getAttribute('data-time');
             if (sliderTime < ctime) {
@@ -91,7 +100,74 @@ const EnquiryPopup = (props) =>{
           });
         }
     }
+
+    useEffect(() => {
+        setTitle(PopupType == "contact-rm"? "Contact our Real Estate Experts": "Book Visit Now") 
+        setNewDays({
+            ...newDays, "allDays": daysArr
+        })
+        setnewTime({
+            ...newTime, "alltimes": timeArr
+        })
+        setcountryCode('91')
+    },[]);
     
+    const handleActiveDate = (index) =>{
+        setNewDays({
+            ...newDays, "active-day": newDays.allDays[index]
+        })
+    }
+
+    const activeClassDate = (index) =>{
+        if(newDays.allDays && newDays.allDays[index] === newDays["active-day"]){
+            checkTime(newDays["active-day"].fullDate);
+            return "active"
+        }else{
+            return ""
+        }
+    }
+
+    const handleActiveTime = (index) =>{
+        setnewTime({
+            ...newTime, "active-time": newTime.alltimes[index]
+        })
+    }
+
+    const activeClassTime = (index) =>{
+        if(newTime.alltimes && newTime.alltimes[index] === newTime["active-time"]){
+            return "active"
+        }else{
+            return ""
+        }
+    }
+
+    const setCountryCode = (num, country) =>{
+        setcountryCode(country.dialCode)
+    }
+
+    useEffect(()=>{
+        setInputField( {...inputField,  countryCode: countryCode})
+    }, [countryCode])
+
+    useEffect(()=>{
+        newDays["active-day"] && 
+        setInputField( {...inputField,  ActivityDate: newDays["active-day"].fullDate})
+    },[newDays]);
+
+    useEffect(()=>{
+        newTime["active-time"] && 
+        setInputField( {...inputField,  ActivityTime: newTime["active-time"].fullTime})
+    },[newTime]);
+    
+
+    const inputsHandler = (e) =>{
+        setInputField( {...inputField,  [e.target.name]: e.target.value} )
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        //const finalSubmit = fetch("API Url");
+        console.log(inputField);
+    }
 
     return(
         <>
@@ -119,40 +195,40 @@ const EnquiryPopup = (props) =>{
                              <div className="title">Please Submit details to continue</div>
                              <form>
                                 <div className="mb-2">
-                                    <input type="text" className="form-control" id="name" name="name"  placeholder="Name*"/>
+                                    <input type="text" className="form-control" id="name" name="name"  placeholder="Name*" onChange={inputsHandler} value={inputField.name}/>
                                 </div>
                                 <div className="mb-2">
-                                    <input type="email" className="form-control" id="email" name="email"  placeholder="Email ID*"/>
+                                    <input type="email" className="form-control" id="email" name="email"  placeholder="Email ID*"  onChange={inputsHandler} value={inputField.email}/>
                                 </div>
                                 <div className="input-group mb-2">
                                     <div className="input-group-prepend p-0">
                                         <div className="flagIn">
-                                            <IntlTelInput defaultCountry={'in'} onlyCountries={["AF","AL","DZ","AS","AD","AO","AQ","AG","AR","AM","AW","AU","AZ","BS","BH","BD","BY","BE","BZ","BJ","BM","BT","BO","BA","BW","BV","IO","BN","BG","BI","KH","CM","CV","CF","TD","CX","CC","KM","CG","CD","CK","CR","CI","HR","CU","DK","DJ","DM","EG","GQ","ER","ET","FK","FO","FJ","FI","FR","GF","PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GP","GU","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","IR","IQ","IE","IT","JO","KZ","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LU","MO","MK","MG","MW","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","MS","MA","MZ","MM","NA","NR","NP","NL","AN","NC","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PN","PL","PT","QA","RE","RO","RU","RW","SH","KN","LC","PM","VC","WS","SM","ST","SA","SN","CS","SC","SL","SG","SK","SI","SB","SO","ZA","GS","LK","SD","SR","SJ","SZ","CH","SY","TW","TJ","TZ","TH","TL","TG","TK","TO","TN","TR","TM","TC","TV","UG","UA","AE","GB","US","UY","UZ","VU","VE","VG","VI","WF","EH","YE","ZM","ZW"]} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true}/>
-                                            <input type="hidden" className="form-control country_code" name="country_code" id="floatingSelect" />
+                                            <IntlTelInput defaultCountry={'in'} onlyCountries={countryArr} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true} onSelectFlag={(num, country) => {setCountryCode(num, country)}}/>
+                                            <input type="hidden" className="form-control country_code" name="country_code" id="country_code" onChange={inputsHandler} value={inputField.countryCode}/>
                                         </div>
                                     </div>
-                                    <input type="text" className="form-control" id="lemail" placeholder="Phone No" />
+                                    <input type="text" className="form-control" id="phoneNo" name="phoneNo" placeholder="Phone No"  onChange={inputsHandler} value={inputField.phoneNo}/>
                                 </div>
                                 {PopupType == 'contact-rm'?
                                     <div className="mb-2">
-                                        <textarea type="text" className="form-control" id="message" name="message"  placeholder="Message*" />
+                                        <textarea type="text" className="form-control" id="message" name="message"  placeholder="Message*"  onChange={inputsHandler} value={inputField.message}/>
                                     </div>
                                 :
                                 <>
                                     <div className="col-12 mb-2">
                                         <div className="d-flex">
                                             <div className="myradio">
-                                                <input type="radio" name="visit_type" value="1" id="pv" className="myradio__input"/>
+                                                <input type="radio" onChange={inputsHandler} name="visit_type" value={1} id="pv" className="myradio__input"/>
                                                 <label for="pv" className="myradio__label">Physical Visit</label>
                                             </div>
                                             <div className="myradio">
-                                                <input type="radio" name="visit_type" value="2" id="vs" className="myradio__input" />
+                                                <input type="radio" onChange={inputsHandler} name="visit_type" value={2} id="vs" className="myradio__input" />
                                                 <label for="vs" className="myradio__label">Virtual Visit</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="mb-3">
-                                        <input type="hidden" name="ActivityDate" id="ActivityDate" value="" />
+                                        <input type="hidden" name="ActivityDate" id="ActivityDate" value={newDays["active-day"] && newDays["active-day"].fullDate} />
                                         <div className="formSlider">
                                             <Swiper
                                                 modules={[Navigation]}
@@ -168,7 +244,7 @@ const EnquiryPopup = (props) =>{
                                                 {daysArr.map((perday, index)=>
                                                     <SwiperSlide key={index}>
                                                         <div className="item">
-                                                            <Datelistitem id={index} fullDate={perday.fullDate} day={perday.day} date={perday.date}/>
+                                                            <div className={`datelist list ${activeClassDate(index)}`} onClick={()=>handleActiveDate(index)} data-date={perday.fullDate}>{perday.day}<span>{perday.date}</span></div>
                                                         </div>
                                                     </SwiperSlide>
                                                 )}
@@ -184,7 +260,7 @@ const EnquiryPopup = (props) =>{
                                         </div>
                                     </div>
                                     <div className="mb-3">
-                                        <input type="hidden" name="ActivityTime" id="ActivityTime" value="" />
+                                        <input type="hidden" name="ActivityTime" id="ActivityTime" value={newTime["active-time"] && newTime["active-time"].fullTime} />
                                         <div className="formSlider">
                                             <Swiper
                                                 modules={[Navigation]}
@@ -200,7 +276,7 @@ const EnquiryPopup = (props) =>{
                                                 {timeArr.map((time, index)=>
                                                     <SwiperSlide key={index}>
                                                         <div className="item">
-                                                            <Timelistitem id={index} hours={time.hours} ampm={time.ampm} fullTime={time.fullTime}/>
+                                                            <div className={`timelist list ${activeClassTime(index)}`} onClick={() => handleActiveTime(index)} data-time={time.fullTime}>{time.hours}<span>{time.ampm}</span></div>
                                                         </div>
                                                     </SwiperSlide>
                                                 )}
@@ -225,7 +301,7 @@ const EnquiryPopup = (props) =>{
                                 </div>
                                 
                                 <div>
-                                    <button type="button" className={`btn sub-btn ${PopupType == 'contact-rm'?'enquiry':'visitschude'}`} disabled={isChecked? '' : 'disabled'}>Submit</button>
+                                    <button type="button" className={`btn sub-btn ${PopupType == 'contact-rm'?'enquiry':'visitschude'}`} disabled={isChecked? '' : 'disabled'} onClick={handleSubmit}>Submit</button>
                                 </div>
                              </form>
                          </div>

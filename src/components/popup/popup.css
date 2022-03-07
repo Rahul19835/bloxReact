@@ -419,3 +419,12 @@ background: transparent;
 }
 
 .formSlider .list>*{pointer-events: none;}
+
+.formSlider .list.disableitem {
+  background: #eee;
+  pointer-events: none;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: .5;
+  border-right: 1px solid #ccc;
+}
