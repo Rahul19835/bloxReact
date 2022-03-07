@@ -12,8 +12,6 @@ import 'swiper/css';
 import ProjectMap from '../../components/map/map';
 import { execluveData, developerData, news } from '../../data';
 
-import EnquiryContext from '../../components/contaxt/enquiry';
-import { useContext } from "react";
 
 const Home = () => {
     const [PPtype, setPPtype] = useState('affordable');
