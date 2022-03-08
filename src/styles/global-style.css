@@ -124,14 +124,7 @@
     outline: none !important;
     box-shadow: none !important;
   }
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active{
-    outline: none !important;
-    box-shadow: none !important;
-    background: var(--gray);
-  }
+  input:-webkit-autofill {transition: background-color 5000s ease-in-out 0s;}
   .p60{padding: 60px 0px;}
   .p40{padding: 40px 0px;}
   .container{max-width: 1600px}

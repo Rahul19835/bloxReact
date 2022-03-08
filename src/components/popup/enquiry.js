@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { serverDate, schedule_timeArr,countryArr } from "../../data";
 import { Navigation } from "swiper";
+import OtpPopup from './otp';
 
 const EnquiryPopup = (props) =>{
     const [PopupType] = useState(props.type);
@@ -304,6 +305,10 @@ const EnquiryPopup = (props) =>{
                                     <button type="button" className={`btn sub-btn ${PopupType == 'contact-rm'?'enquiry':'visitschude'}`} disabled={isChecked? '' : 'disabled'} onClick={handleSubmit}>Submit</button>
                                 </div>
                              </form>
+                         </div>
+                         <div className="otpSec">
+                             <OtpPopup email/>
+                             <OtpPopup phone/>
                          </div>
                     </div>
                 </div>
