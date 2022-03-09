@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import './popup.css';
@@ -6,12 +6,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { serverDate, schedule_timeArr,countryArr } from "../../data";
 import { Navigation } from "swiper";
-import OtpPopup from './otp';
+import OTPInput, { ResendOTP } from "otp-input-react";
 
 const EnquiryPopup = (props) =>{
     const [PopupType] = useState(props.type);
     const [titletext, setTitle] = useState(PopupType);
     const [isChecked, setIsChecked] = useState(false);
+    const [EmailOTPvalue, setEmailOTPvalue] = useState("");
+    const [PhoneOTPvalue, setPhoneOTPvalue] = useState("");
+    const phoneOtpButton = useRef(null);
+    const emailOtpButton = useRef(null);
     const [newDays, setNewDays] = useState({
         "allDays": null,
         "active-day": null
@@ -170,6 +174,18 @@ const EnquiryPopup = (props) =>{
         console.log(inputField);
     }
 
+    if(EmailOTPvalue.length === 4){
+        emailOtpButton.current.focus();
+    }
+    
+    if(PhoneOTPvalue.length === 4){
+        phoneOtpButton.current.focus();
+    }
+
+    useEffect(()=>{
+        
+    })
+
     return(
         <>
         <div className="popup-box">
@@ -307,8 +323,38 @@ const EnquiryPopup = (props) =>{
                              </form>
                          </div>
                          <div className="otpSec">
-                             <OtpPopup email/>
-                             <OtpPopup phone/>
+                            <div className="otpbox" id="emailOtp"> 
+                                <div class="subtitle">Verify Your Email</div>
+                                <span class="sub">enter 4 digit otp</span>
+                                <OTPInput value={EmailOTPvalue} onChange={setEmailOTPvalue} OTPLength={4} otpType="number" disabled={false} inputStyles={{
+                                    border: "1px solid #ced4da",
+                                    width: "50px",
+                                    height: "50px",
+                                    radius: "0px",
+                                    marginRight: "3px",
+                                    fontSize: "20px"
+                                }}/>
+                                <div class="mt-3">
+                                    <button type="submit" ref={emailOtpButton} className="btn sub-btn text-left verify-btn" disabled={EmailOTPvalue.length !== 4}><span>verify</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="otpbox" id="phoneOtp"> 
+                                <div class="subtitle">Verify Your Phone Number</div>
+                                <span class="sub">enter 4 digit otp</span>
+                                <OTPInput value={PhoneOTPvalue} onChange={setPhoneOTPvalue} OTPLength={4} otpType="number" disabled={false} inputStyles={{
+                                    border: "1px solid #ced4da",
+                                    width: "50px",
+                                    height: "50px",
+                                    radius: "0px",
+                                    marginRight: "3px",
+                                    fontSize: "20px"
+                                }}/>
+                                <div class="mt-3">
+                                    <button type="submit" ref={phoneOtpButton} className="btn sub-btn text-left verify-btn" disabled={PhoneOTPvalue.length !== 4}><span>verify</span>
+                                    </button>
+                                </div>
+                            </div>
                          </div>
                     </div>
                 </div>
