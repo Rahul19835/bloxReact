@@ -211,7 +211,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 }
-.social-login a {
+.social-login span{
 padding: 10px 12px;
 margin: 0px;
 width: 49.5%;
@@ -222,17 +222,20 @@ justify-content: center;
 pointer-events: all;
 font-weight: 500;
 }
-.social-login a.fblog {
+.social-login .fblog {
 background: #334f8d;
 color: var(--white);
 }
-.social-login a.glog {
+.social-login .glog {
 background: #e8e8e8;
 color: var(--text-color);
 }
-.social-login a .icon {
+.social-login span .icon {
 width: 16px;
 margin-right: 5px;
+}
+.social-login span:hover{
+  cursor: pointer;
 }
 .btnIn{
 display: flex;
@@ -337,9 +340,10 @@ width: auto;
 height: auto;
 background: transparent;
 }
-.enqRight{
+.enqRight,.otpSec,.enquery .popleft{
   display: none;
 }
+.show{display: block !important;}
 .enqRight,.otpSec{
   padding: 40px 30px;
   height: 100%;
@@ -484,4 +488,31 @@ background: transparent;
   font-feature-settings: normal;
   font-variant: normal;
   text-rendering: auto;
+}
+.otp-lr>div{
+  justify-content: center;
+}
+.cnotp {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between !important;
+  margin-bottom: 20px;
+}
+.cnotp p {
+  margin: 0px;
+  line-height: 1;
+  color: var(--medium-black);
+  font-size: 15px;
+}
+.cnotp p span{
+  margin-right: 5px;
+}
+.cnotp span{
+  color: var(--theme-color);
+}
+.resend_otp:hover,.goback:hover{
+  cursor: pointer;
+}
+.not-recive,.otp-valid,.lrotp,.regphone{
+  display: none;
 }

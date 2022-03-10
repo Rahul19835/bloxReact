@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { serverDate, schedule_timeArr,countryArr } from "../../data";
 import { Navigation } from "swiper";
-import OTPInput, { ResendOTP } from "otp-input-react";
+import OTPInput from "react-otp-input";
 
 const EnquiryPopup = (props) =>{
     const [PopupType] = useState(props.type);
@@ -16,6 +16,8 @@ const EnquiryPopup = (props) =>{
     const [PhoneOTPvalue, setPhoneOTPvalue] = useState("");
     const phoneOtpButton = useRef(null);
     const emailOtpButton = useRef(null);
+
+    const [activeClass, setActiveClass] = useState(false);
     const [newDays, setNewDays] = useState({
         "allDays": null,
         "active-day": null
@@ -29,6 +31,8 @@ const EnquiryPopup = (props) =>{
     const handleCheck = () => {
         setIsChecked(!isChecked);
     }
+
+   
 
     const [inputField , setInputField] = useState({
         "name": null,
@@ -168,31 +172,46 @@ const EnquiryPopup = (props) =>{
     const inputsHandler = (e) =>{
         setInputField( {...inputField,  [e.target.name]: e.target.value} )
     }
+   
+
+    useEffect(()=>{
+        if(EmailOTPvalue.length === 4){
+            emailOtpButton.current.focus();
+        }
+    },[EmailOTPvalue])
+
+    useEffect(()=>{
+        if(PhoneOTPvalue.length === 4){
+            phoneOtpButton.current.focus();
+        }
+    },[PhoneOTPvalue])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         //const finalSubmit = fetch("API Url");
         console.log(inputField);
+        setActiveClass('show')
     }
 
-    if(EmailOTPvalue.length === 4){
-        emailOtpButton.current.focus();
-    }
-    
-    if(PhoneOTPvalue.length === 4){
-        phoneOtpButton.current.focus();
+    const handleEmailOTPSubmit = async (e) => {
+        e.preventDefault();
+        //const finalSubmit = fetch("API Url");
+        console.log(EmailOTPvalue);
     }
 
-    useEffect(()=>{
-        
-    })
+    const handlePhoneOTPSubmit = async (e) => {
+        e.preventDefault();
+        //const finalSubmit = fetch("API Url");
+        console.log(PhoneOTPvalue);
+    }
 
     return(
         <>
-        <div className="popup-box">
+        <div className="popup-box enquery">
             <div className="box">
                 <span className="close-icon" onClick={props.handleClose}><i className="la la-times"></i></span>
                 <div className="popinner">
-                    <div className="popleft">
+                    <div className={`popleft ${activeClass ? "" : "show"}`}>
                     <div className="bdow">
                         <div className="title"><em className="icon-download"><i className={`la ${PopupType == 'contact-rm'?'la-file-contract':'la-handshake'}`}></i></em>{titletext}</div>
                         {PopupType == 'contact-rm'?
@@ -208,7 +227,7 @@ const EnquiryPopup = (props) =>{
                     </div>
                     </div>
                     <div className="popright">
-                         <div className="enqRight">
+                         <div className={`enqRight ${activeClass ? "" : "show"}`}>
                              <div className="title">Please Submit details to continue</div>
                              <form>
                                 <div className="mb-2">
@@ -221,7 +240,7 @@ const EnquiryPopup = (props) =>{
                                     <div className="input-group-prepend p-0">
                                         <div className="flagIn">
                                             <IntlTelInput defaultCountry={'in'} onlyCountries={countryArr} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true} onSelectFlag={(num, country) => {setCountryCode(num, country)}}/>
-                                            <input type="hidden" className="form-control country_code" name="country_code" id="country_code" onChange={inputsHandler} value={inputField.countryCode}/>
+                                            <input type="hidden" className="form-control country_code" name="country_code" onChange={inputsHandler} value={inputField.countryCode}/>
                                         </div>
                                     </div>
                                     <input type="text" className="form-control" id="phoneNo" name="phoneNo" placeholder="Phone No"  onChange={inputsHandler} value={inputField.phoneNo}/>
@@ -322,37 +341,41 @@ const EnquiryPopup = (props) =>{
                                 </div>
                              </form>
                          </div>
-                         <div className="otpSec">
+                         <div className={`otpSec ${activeClass ? "show" : ""}`}>
                             <div className="otpbox" id="emailOtp"> 
-                                <div class="subtitle">Verify Your Email</div>
-                                <span class="sub">enter 4 digit otp</span>
-                                <OTPInput value={EmailOTPvalue} onChange={setEmailOTPvalue} OTPLength={4} otpType="number" disabled={false} inputStyles={{
-                                    border: "1px solid #ced4da",
-                                    width: "50px",
-                                    height: "50px",
-                                    radius: "0px",
-                                    marginRight: "3px",
-                                    fontSize: "20px"
-                                }}/>
-                                <div class="mt-3">
-                                    <button type="submit" ref={emailOtpButton} className="btn sub-btn text-left verify-btn" disabled={EmailOTPvalue.length !== 4}><span>verify</span>
-                                    </button>
+                                <div className="subtitle">Verify Your Email</div>
+                                <span className="sub">enter 4 digit otp</span>
+                                <div className="otp-div">
+                                    <OTPInput value={EmailOTPvalue} onChange={setEmailOTPvalue} OTPLength={4} isInputNum={true} disabled={false} inputStyle={{
+                                        border: "1px solid #ced4da",
+                                        width: "50px",
+                                        height: "50px",
+                                        radius: "0px",
+                                        marginRight: "3px",
+                                        fontSize: "20px"
+                                    }}/>
+                                    <div className="mt-3">
+                                        <button type="submit" ref={emailOtpButton} className="btn sub-btn text-left verify-btn" disabled={EmailOTPvalue.length !== 4} onClick={handleEmailOTPSubmit}><span>verify email</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="otpbox" id="phoneOtp"> 
-                                <div class="subtitle">Verify Your Phone Number</div>
-                                <span class="sub">enter 4 digit otp</span>
-                                <OTPInput value={PhoneOTPvalue} onChange={setPhoneOTPvalue} OTPLength={4} otpType="number" disabled={false} inputStyles={{
-                                    border: "1px solid #ced4da",
-                                    width: "50px",
-                                    height: "50px",
-                                    radius: "0px",
-                                    marginRight: "3px",
-                                    fontSize: "20px"
-                                }}/>
-                                <div class="mt-3">
-                                    <button type="submit" ref={phoneOtpButton} className="btn sub-btn text-left verify-btn" disabled={PhoneOTPvalue.length !== 4}><span>verify</span>
-                                    </button>
+                                <div className="subtitle">Verify Your Phone Number</div>
+                                <span className="sub">enter 4 digit otp</span>
+                                <div className="otp-div">
+                                    <OTPInput value={PhoneOTPvalue} onChange={setPhoneOTPvalue} OTPLength={4} isInputNum={true} disabled={false} inputStyle={{
+                                        border: "1px solid #ced4da",
+                                        width: "50px",
+                                        height: "50px",
+                                        radius: "0px",
+                                        marginRight: "3px",
+                                        fontSize: "20px"
+                                    }}/>
+                                    <div className="mt-3">
+                                        <button type="submit" ref={phoneOtpButton} className="btn sub-btn text-left verify-btn" disabled={PhoneOTPvalue.length !== 4} onClick={handlePhoneOTPSubmit}><span>verify phone</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                          </div>

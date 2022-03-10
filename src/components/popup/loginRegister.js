@@ -1,13 +1,15 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect, useContext, useRef} from "react";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import './popup.css';
 import {user, lock} from '../../icons/svg-icons';
 import accounticon from '../../images/regicon.png';
+import phoneicon from '../../images/regphone.png';
 import fbicon from '../../images/fblog.png';
 import googleicon from '../../images/google.png';
 import {LoginRegisterContext} from '../../components/contaxt/loginContext';
-
+import OTPInput from "react-otp-input";
+import { countryArr } from "../../data";
 
 const Popup = (props) =>{
     const {popupType} = useContext(LoginRegisterContext);
@@ -15,11 +17,28 @@ const Popup = (props) =>{
     const [creatingAccount, setCreatingAccount] = useState(PopupType);
     const [btntext, setbtntext] = useState(PopupType);
     const [titletext, setitletext] = useState(PopupType);
+    const [OTPvalue, setOTPvalue] = useState("");
+    const OtpButton = useRef(null);
+    const [activeOTPClass, setActiveOTPClass] = useState(false);
+    const [activePhoneClass, setActivePhoneClass] = useState(false);
+    const [activeFormClass, setActiveFormClass] = useState(false);
+    const [countryCode, setcountryCode] = useState(false);
+    
+
+    const [inputField , setInputField] = useState({
+        "login": null,
+        "name": null,
+        "email": null,
+        "phoneNo": null,
+        "message": null,
+        "city" : null,
+    });
 
     useEffect(() => {
       setCreatingAccount(PopupType == "login"? "New To Blox?": "Already have an Account?")
       setbtntext(PopupType == "login"? "Create an account": "Login")
       setitletext(PopupType == "login"? "Login": "Register")
+      setcountryCode('91')
     });
 
     const togglePropType = (type) => {
@@ -28,6 +47,53 @@ const Popup = (props) =>{
         setbtntext(PopupType == "login"? "Create an account": "Login")
         setitletext(PopupType == "login"? "Login": "Register")
     };
+
+    const inputsHandler = (e) =>{
+        setInputField( {...inputField,  [e.target.name]: e.target.value} )
+    }
+
+    const setCountryCode = (num, country) =>{
+        setcountryCode(country.dialCode)
+    }
+
+    useEffect(()=>{
+        setInputField( {...inputField,  countryCode: countryCode})
+    }, [countryCode])
+
+
+    useEffect(()=>{
+        if(OTPvalue.length === 4){
+            OtpButton.current.focus();
+        }
+    },[OTPvalue])
+
+    const handallogin = async (e) => {
+        console.log(activeOTPClass)
+        setActiveOTPClass(!activeOTPClass)
+    }
+
+    const handalsignup = async (e) => {
+        setActivePhoneClass(true)
+    }
+
+    const handalphone = async (e) => {
+        setActiveOTPClass(true)
+    }
+
+    const handalregfinal = async (e) => {
+        e.preventDefault();
+    }
+
+    const handalloginotp = async (e) => {
+        console.log(OTPvalue)
+    }
+
+    const handalsignupotp = async (e) => {
+        setActiveFormClass(true)
+        console.log(OTPvalue)
+    }
+   
+
     
     return(
         <>
@@ -61,7 +127,7 @@ const Popup = (props) =>{
                         <div className="login">
                             <div className={`account-form ${PopupType == 'login'?'':'border-bottom-0'}`}>
                                 <div className="title">{titletext} to Continue</div>
-                                <div className="aficon">
+                                <div className="aficon mt-4 mb-4">
                                     <img src={accounticon} alt="Register" className="img-fluid" />
                                 </div>
                                 <form>
@@ -69,11 +135,11 @@ const Popup = (props) =>{
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend p-0">
                                             <div className="flagIn">
-                                                <IntlTelInput defaultCountry={'in'} onlyCountries={["AF","AL","DZ","AS","AD","AO","AQ","AG","AR","AM","AW","AU","AZ","BS","BH","BD","BY","BE","BZ","BJ","BM","BT","BO","BA","BW","BV","IO","BN","BG","BI","KH","CM","CV","CF","TD","CX","CC","KM","CG","CD","CK","CR","CI","HR","CU","DK","DJ","DM","EG","GQ","ER","ET","FK","FO","FJ","FI","FR","GF","PF","TF","GA","GM","GE","DE","GH","GI","GR","GL","GP","GU","GN","GW","GY","HT","HM","VA","HN","HK","HU","IS","IN","IR","IQ","IE","IT","JO","KZ","KI","KP","KR","KW","KG","LA","LV","LB","LS","LR","LY","LI","LU","MO","MK","MG","MW","MV","ML","MT","MH","MQ","MR","MU","YT","MX","FM","MD","MC","MN","MS","MA","MZ","MM","NA","NR","NP","NL","AN","NC","NI","NE","NG","NU","NF","MP","NO","OM","PK","PW","PS","PA","PG","PY","PN","PL","PT","QA","RE","RO","RU","RW","SH","KN","LC","PM","VC","WS","SM","ST","SA","SN","CS","SC","SL","SG","SK","SI","SB","SO","ZA","GS","LK","SD","SR","SJ","SZ","CH","SY","TW","TJ","TZ","TH","TL","TG","TK","TO","TN","TR","TM","TC","TV","UG","UA","AE","GB","US","UY","UZ","VU","VE","VG","VI","WF","EH","YE","ZM","ZW"]} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true}/>
-                                                <input type="hidden" className="form-control country_code" name="country_code" id="floatingSelect" />
+                                                <IntlTelInput defaultCountry={'in'} onlyCountries={countryArr} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true} onSelectFlag={(num, country) => {setCountryCode(num, country)}}/>
+                                                <input type="hidden" className="form-control country_code" name="country_code" onChange={inputsHandler} value={inputField.countryCode}/>
                                             </div>
                                         </div>
-                                        <input type="text" className="form-control" id="lemail" placeholder="Email/Phone" />
+                                        <input type="text" className="form-control" placeholder="Email/Phone" onChange={inputsHandler} value={inputField.login}/>
                                     </div>
                                     :
                                     <div className="input-group mb-3">
@@ -82,11 +148,12 @@ const Popup = (props) =>{
                                                 <i className="la la-envelope"></i>
                                             </div>
                                         </div>
-                                        <input type="email" class="form-control" id="emailR" placeholder="Email" />
+                                        <input type="email" className="form-control" placeholder="Email" onChange={inputsHandler} value={inputField.email}/>
                                     </div>
+                                     
                                     }
                                     <div className="btn-sec">
-                                        <button type="submit" id="email_continue_btn" className="btn sub-btn text-left">Continue</button>
+                                        <button type="button" className="btn sub-btn text-left" onClick={PopupType == 'login'? ()=>handallogin() : ()=>handalsignup()}>Continue</button>
                                     </div>
                                 </form>
                                 {PopupType == 'login'?<span className="or">or Log In with</span>:""}
@@ -94,10 +161,98 @@ const Popup = (props) =>{
                             </div>
                             {PopupType == 'login'?
                             <div className="social-login">
-                                <a href="#" className="fblog"><div className="icon"><img src={fbicon} className="img-fluid" /></div>Log In with Facebook</a>
-                                <a href="#" className="glog" id="glog"><div className="icon"><img src={googleicon} className="img-fluid" /></div>Log In with Google</a>
+                                <span href="#" className="fblog"><div className="icon"><img src={fbicon} className="img-fluid" /></div>Log In with Facebook</span>
+                                <span href="#" className="glog"><div className="icon"><img src={googleicon} className="img-fluid" /></div>Log In with Google</span>
                             </div>:""}
                         </div>
+                        {PopupType == 'login'?"":
+                        <>
+                            {activePhoneClass ?
+                            <div className={`regphone`}>
+                                <div className="account-form border-bottom-0">
+                                    <div className="title">Register to continue</div>
+                                    <div className="aficon mt-4 mb-4">
+                                        <img src={phoneicon} alt="Register" className="img-fluid" />
+                                    </div>
+                                    <form>
+                                        <div className="input-group mb-3">
+                                            <div className="input-group-prepend p-0">
+                                                <div className="flagIn">
+                                                    <IntlTelInput defaultCountry={'in'} onlyCountries={countryArr} separateDialCode={true} preferredCountries={[]} useMobileFullscreenDropdown={true} onSelectFlag={(num, country) => {setCountryCode(num, country)}}/>
+                                                    <input type="hidden" className="form-control country_code" name="country_code" onChange={inputsHandler} value={inputField.countryCode}/>
+                                                </div>
+                                            </div>
+                                            <input type="tel" className="form-control" placeholder="Phone No" onChange={inputsHandler} value={inputField.phoneNo}/>
+                                        </div>
+                                        <div className="btn-sec">
+                                            <button type="button" className="btn sub-btn text-left" onClick={handalphone}>Continue</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            : ""}
+                            {activeFormClass ?
+                            <div className={`regphone`}>
+                                <div className="account-form border-bottom-0">
+                                    <div className="title">Come in, the house is yours</div>
+                                    <form>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder="Name" onChange={inputsHandler} value={inputField.name}/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="email" className="form-control" placeholder="Email Id"  value={inputField.email}/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder="Phone No"  value={inputField.phoneNo}/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <input type="text" className="form-control" placeholder="Search for city" onChange={inputsHandler} value={inputField.city}/>
+                                        </div>
+                                        <div className="btn-sec">
+                                            <button type="button" className="btn sub-btn text-left" onClick={handalregfinal}>Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            : ""}
+                        </>
+                        }
+                        {activeOTPClass ?
+                        <div className={`lrotp`}>
+                            <div className="account-form border-bottom-0">
+                                <div className="title">Verify <span className="sub"></span></div>
+                                <div className="aficon mt-4 mb-4">
+                                    <img src={phoneicon} alt="Register" className="img-fluid" />
+                                </div>
+                                <form>
+                                    <div className="otp-lr">
+                                        <OTPInput value={OTPvalue} onChange={setOTPvalue} OTPLength={4} isInputNum={true} disabled={false} inputStyle={{
+                                            border: "1px solid #f2f0ef",
+                                            width: "50px",
+                                            height: "50px",
+                                            radius: "0px",
+                                            margin: "10px",
+                                            fontSize: "20px",
+                                            background: "#f2f0ef"
+                                        }}/>
+                                        <div className="cnotp">
+                                            <div>
+                                                <p className="otp-valid">Resend OTP in <span></span></p>
+                                                <p className="not-recive"><span className="resend_otp">Resend OTP</span></p>
+                                            </div>
+                                            <div>
+                                                <p><span className="goback">{PopupType == 'login'?"Go Back":"Change Number"}</span></p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-3">
+                                            <button type="button" ref={OtpButton} className="btn sub-btn text-left" disabled={OTPvalue.length !== 4} onClick={PopupType == 'login'? ()=>handalloginotp() : ()=>handalsignupotp()}><span>verify</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        : ""}
                     </div>
                     </div>
                 </div>
