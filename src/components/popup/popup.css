@@ -513,6 +513,6 @@ background: transparent;
 .resend_otp:hover,.goback:hover{
   cursor: pointer;
 }
-.not-recive,.otp-valid,.lrotp,.regphone{
+.not-recive,.otp-valid,,.regphone{
   display: none;
 }

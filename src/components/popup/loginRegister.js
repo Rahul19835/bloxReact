@@ -23,6 +23,7 @@ const Popup = (props) =>{
     const [activePhoneClass, setActivePhoneClass] = useState(false);
     const [activeFormClass, setActiveFormClass] = useState(false);
     const [countryCode, setcountryCode] = useState(false);
+    const [hidediv, sethidediv] = useState(false);
     
 
     const [inputField , setInputField] = useState({
@@ -70,14 +71,17 @@ const Popup = (props) =>{
     const handallogin = async (e) => {
         console.log(activeOTPClass)
         setActiveOTPClass(!activeOTPClass)
+        sethidediv(!hidediv)
     }
 
     const handalsignup = async (e) => {
         setActivePhoneClass(true)
+        sethidediv(!hidediv)
     }
 
     const handalphone = async (e) => {
         setActiveOTPClass(true)
+        setActivePhoneClass(false)
     }
 
     const handalregfinal = async (e) => {
@@ -90,6 +94,7 @@ const Popup = (props) =>{
 
     const handalsignupotp = async (e) => {
         setActiveFormClass(true)
+        setActiveOTPClass(false)
         console.log(OTPvalue)
     }
    
@@ -124,6 +129,7 @@ const Popup = (props) =>{
                     </div>
                     <div className="popright">
                     <div className="popRightInner">
+                    {hidediv ?'' :
                         <div className="login">
                             <div className={`account-form ${PopupType == 'login'?'':'border-bottom-0'}`}>
                                 <div className="title">{titletext} to Continue</div>
@@ -165,6 +171,7 @@ const Popup = (props) =>{
                                 <span href="#" className="glog"><div className="icon"><img src={googleicon} className="img-fluid" /></div>Log In with Google</span>
                             </div>:""}
                         </div>
+                        }
                         {PopupType == 'login'?"":
                         <>
                             {activePhoneClass ?
