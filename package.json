@@ -17,8 +17,10 @@
     "react-hook-form": "^7.25.3",
     "react-intl-tel-input": "^8.2.0",
     "react-otp-input": "^2.4.0",
+    "react-read-more-read-less": "^1.0.7",
     "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
     "swiper": "^8.0.3",
     "web-vitals": "^2.1.4"
   },

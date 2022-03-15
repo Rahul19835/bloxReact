@@ -2,6 +2,7 @@ import React from "react";
 import Advancesearch from "./advanceSearch";
 import {Link} from "react-router-dom";
 import {homesearch} from '../../icons/svg-icons';
+import './search.css';
 
 const Search = (props) => {
     return(
@@ -21,8 +22,16 @@ const Search = (props) => {
                     : ""}
                 </div>
             </div>
-            {props.home ? "" :<Advancesearch />}
-
+            {props.home ? "" : 
+                <>
+                    <Advancesearch />
+                    <div className="more-filter">
+                        <div className="moreFilter" title="More Filter"></div>
+                    </div>
+                    <button type="button" name="" className="load-more search"><span>Search</span></button>
+                    <span className="reset" title="Reset Filter"><i className="la la-redo-alt"></i></span>
+                </>
+            }
         </>
     )
 }

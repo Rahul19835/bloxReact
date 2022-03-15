@@ -76,7 +76,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Blox Exclusive', 'Featured', 'Under construction'],
-       city_id: '1'
+       city_id: '1',
+       pro_brif:'Oberoi Realty presents Sky City, a design revelation offering masterfully crafted 3 BHKs at Borivali East. Located in greenest part of mumbai, project is spreaded across 27 acers, offering 3000+ residentail units. The project is well connected to the Western Express Highway which is just 0.1 kilometres away from it, where as Swami Vivekanand Road lies just 1.4 kilometres away from the project. The Dattapada Road, the Link Road and Borivali railway station are easily accessible from here,while the proposed metro station lies near it. The International Airport can be accessed easily from the project as well',
+       glocation: {
+        lat: 41.4055,
+        lng: 2.1915
+       },
     },
     {
        project_id: '2',
@@ -87,7 +92,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Blox Exclusive', 'Featured'],
-       city_id: '2'
+       city_id: '2',
+       pro_brif:'Nestled in the sprawling serenity of Powai, Emerald Isle is an oasis of luxury; offering its residents spacious and elegant homes. The property is part of a 19-acre mixed development, of which the ultra-luxury apartments boast 10 acres of open space and 3 acres of central greenery for its residents to enjoy. Emerald Isle is a planning masterpiece, built on three levels of parking to afford a traffic-free podium and a host of amenities amidst its central greens. The property is developed in phases and Phase-I is home to 800 happy families. Phase-II of Emerald Isle is the missing puzzle piece for home seekers in search of ready or under construction residences. The homes are meticulously designed 2, 3, & 4 BHK apartments that ensure its residents lead a life of harmony. Tucked away in nature and equipped with nature, truly make Emerald Isle Powai’s Finest Gated Community.',
+       glocation: {
+        lat: 41.3797,
+        lng: 2.1682
+      },
     },
     {
        project_id: '3',
@@ -98,7 +108,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Blox Exclusive', 'Under construction'],
-       city_id: '3'
+       city_id: '3',
+       pro_brif:"Hiranandani Highland is one of the magnificent residential projects in the financial capital of the state, Powai, Mumbai. Homes here intend to be unique with their elegant design and lavish lifestyle. This project is spread across 0.38 acres and offers luxurious 2 & 3 BHK apartments. Additionally, the project comes with the unique ‘Forest’ clubhouse, multi-purpose court, high-tech gym, custom swimming pool, well-groomed landscape garden, nirvana park, hospitals, school, etc. Inclusively, the project's location embraces the hills, lakes, and easy connectivity across the city to live a hassle-free lifestyle. So, come own the luxurious lifestyle you’ve always dreamed of only in Powai.",
+       glocation: {
+        lat: 41.3773,
+        lng: 2.1585
+    },
     },
     {
        project_id: '4',
@@ -109,7 +124,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Featured',],
-       city_id: '4'
+       city_id: '4',
+       pro_brif:'Oberoi Realty presents Sky City, a design revelation offering masterfully crafted 3 BHKs at Borivali East. Located in greenest part of mumbai, project is spreaded across 27 acers, offering 3000+ residentail units. The project is well connected to the Western Express Highway which is just 0.1 kilometres away from it, where as Swami Vivekanand Road lies just 1.4 kilometres away from the project. The Dattapada Road, the Link Road and Borivali railway station are easily accessible from here,while the proposed metro station lies near it. The International Airport can be accessed easily from the project as well',
+       glocation: {
+        lat: 41.3917,
+        lng: 2.1649
+    },
     },
     {  
        project_id: '1', 
@@ -120,7 +140,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Blox Exclusive', 'Featured', 'Under construction'],
-       city_id: '1'
+       city_id: '1',
+       pro_brif:'Oberoi Realty presents Sky City, a design revelation offering masterfully crafted 3 BHKs at Borivali East. Located in greenest part of mumbai, project is spreaded across 27 acers, offering 3000+ residentail units. The project is well connected to the Western Express Highway which is just 0.1 kilometres away from it, where as Swami Vivekanand Road lies just 1.4 kilometres away from the project. The Dattapada Road, the Link Road and Borivali railway station are easily accessible from here,while the proposed metro station lies near it. The International Airport can be accessed easily from the project as well',
+       glocation: {
+        lat: 41.3954,
+        lng: 2.162
+    },
     },
     {
        project_id: '2',
@@ -131,7 +156,12 @@ const execluveData = [
        flatTypes: ['2 BHK, 2 BHK, 3 BHK, 4 BHK Flats', '429 sq. ft. to 1700 sq. ft.'],
        url: '',
        stamp: ['Blox Exclusive', 'Featured'],
-       city_id: '2'
+       city_id: '2',
+       pro_brif:'Oberoi Realty presents Sky City, a design revelation offering masterfully crafted 3 BHKs at Borivali East. Located in greenest part of mumbai, project is spreaded across 27 acers, offering 3000+ residentail units. The project is well connected to the Western Express Highway which is just 0.1 kilometres away from it, where as Swami Vivekanand Road lies just 1.4 kilometres away from the project. The Dattapada Road, the Link Road and Borivali railway station are easily accessible from here,while the proposed metro station lies near it. The International Airport can be accessed easily from the project as well',
+       glocation: {
+        lat: 41.3900,
+        lng: 2.110
+      },
     }
 ]
 

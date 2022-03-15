@@ -1,11 +1,13 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import './card.css';
 import { Link } from "react-router-dom";
 import {EnquiryContext} from '../contaxt/enquiry';
+import Cardfooter from "./cardfooter";
+import ReadMoreReadLess from "react-read-more-read-less";
 
 
 const Card = (props) =>{
-    const {popupState, togglePopup} = useContext(EnquiryContext);
+    const {togglePopup} = useContext(EnquiryContext);
    
     return(
         <>
@@ -36,12 +38,17 @@ const Card = (props) =>{
                                 {props.flatTypes.map((faltType, index)=> <li key={index}>{faltType}</li>)}
                             </ul>
                         </div>
+                        {props.page == "search" && 
+                            <div className="pro-brif">
+                                <ReadMoreReadLess charLimit={120} readMoreText={"show more"} readLessText={"show less"} readMoreClassName="show-more" readLessClassName="show-less">
+                                    {props.pro_brif}
+                                </ReadMoreReadLess>
+                            </div>
+                        }
                     </div>
-                    <div className="card-footer">
-                        <span className="btn site-btn2 contactrm" data-project_id={props.project_id} onClick={()=>togglePopup('contact-rm')}>Contact RM</span>
-                        <span className="btn site-btn bookvisit" data-project_id={props.project_id} onClick={()=>togglePopup('site-visit')}>Site Visit</span>
-                    </div>
+                   {props.page !== "search" &&<Cardfooter project_id={props.project_id} togglePopup={togglePopup}/>}
                 </div>
+                {props.page == "search" && <Cardfooter project_id={props.project_id} togglePopup={togglePopup}/>}
             </div>
             
         </>

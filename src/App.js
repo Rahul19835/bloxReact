@@ -16,10 +16,10 @@ function App() {
     <AppContext>
       <Router>
           <Header/>
-          <Switch>
+            <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/search" exact component={projectlist} />
-          </Switch>
+            </Switch>
           <Footer/>
         </Router>      
     </AppContext>

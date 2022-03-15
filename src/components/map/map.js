@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import mapMarker from '../../images/blox-medium.png';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { Link } from "react-router-dom";
 import './map.css';
 import {locations} from '../../data';
+import { execluveData as projectdata } from '../../data';
+import {MapContext} from "../contaxt/maps";
 
 
-const ProjectMap = ({ isAdding, variant, type}) => {
+const ProjectMap = ({ variant, type}) => {
 
-    const [selected, setSelected] = useState({});
+    const {selected, setSelected, setCardMarkerHover, resetCardMarkerHover, onSelect} = useContext(MapContext);
 
 
     useEffect(()=>{
@@ -20,32 +22,20 @@ const ProjectMap = ({ isAdding, variant, type}) => {
         lat: 41.3851, lng: 2.1734
     }
 
-    const onSelect = item => {
-        setSelected(item);
-    }
-
     const mapStyles = () => {
-        if (!isAdding) {
+        if (variant == 'home') {
             return {
                 height: "400px",
                 width: "100%"
             }
         } else {
             return {
-                height: "400px",
+                height: "100%",
                 width: "100%"
             }
         }
     }
 
-
-    const setCardMarkerHover = location => {
-        setSelected(location);
-    };
-
-    const resetCardMarkerHover = () => {
-        setSelected('')
-    };
 
     return (
         <div className="licon-sec">
@@ -65,8 +55,8 @@ const ProjectMap = ({ isAdding, variant, type}) => {
             </div>
             :""
             }
-            <div className={`lsec-right ${variant == 'listing'?'listingmap':'' }`}>
-                <div id="map">
+            <div className={variant == 'listing' ? 'listingmap': 'lsec-right'}>
+                <div class="map" style={{ height:"100%" }}>
                     <LoadScript
                         googleMapsApiKey='AIzaSyDMBRr9IAiWpVRXb7Oo5RhNLC-rzQ5WGLU'>
                         <GoogleMap
@@ -79,42 +69,94 @@ const ProjectMap = ({ isAdding, variant, type}) => {
                             clickableIcons={false}
                         >
                             {
-                                locations ?
-                                    locations.filter((location) =>  location.type == type).map((item, index) => {
-                                        return (
-                                            <>
-                                            <Marker
-                                                key={index}
-                                                position={item.location}
-                                                onClick={() => onSelect(item)}
-                                                icon={mapMarker}
-                                            />
-                                            </>
-                                        )
-                                    }) : null
+                                <>
+                                {variant == 'home' &&
+                                <>
+                                {
+                                    locations ?
+                                        locations.filter((location) =>  location.type == type).map((item, index) => {
+                                            return (
+                                                <>
+                                                <Marker
+                                                    key={index}
+                                                    position={item.location}
+                                                    onClick={() => onSelect(item)}
+                                                    icon={mapMarker}
+                                                />
+                                                </>
+                                            )
+                                        }) : null
+                                }
+                                {
+                                    selected.location ?
+                                        (
+                                            <InfoWindow
+                                                position={selected.location}
+                                            >
+                                                <div className="mapProject">
+                                                    <Link to={selected.url}>
+                                                        <div className="mpImg">
+                                                            <img src={selected.img} />
+                                                        </div>
+                                                        <div className="mpData">
+                                                            <h3>{selected.name}</h3>
+                                                            <p className="mpadd">{selected.address}</p>
+                                                            <span className="mpprice">{selected.price}</span>
+                                                        </div>
+                                                        <p></p>
+                                                    </Link>
+                                                </div>
+                                            </InfoWindow>
+                                        ) : null
+                                }
+                                </>
+                                }
+                                </>
                             }
-
                             {
-                                selected.location ?
-                                    (
-                                        <InfoWindow
-                                            position={selected.location}
-                                        >
-                                            <div className="mapProject">
-                                                <Link to={selected.url}>
-                                                    <div className="mpImg">
-                                                        <img src={selected.img} />
-                                                    </div>
-                                                    <div className="mpData">
-                                                        <h3>{selected.name}</h3>
-                                                        <p className="mpadd">{selected.address}</p>
-                                                        <span className="mpprice">{selected.price}</span>
-                                                    </div>
-                                                    <p></p>
-                                                </Link>
-                                            </div>
-                                        </InfoWindow>
-                                    ) : null
+                                <>
+                                {variant == 'listing' &&
+                                <>
+                                {
+                                    projectdata ?
+                                        projectdata.map((item, index) => {
+                                            return (
+                                                <>
+                                                <Marker
+                                                    key={index}
+                                                    position={item.glocation}
+                                                    onClick={() => onSelect(item)}
+                                                    icon={mapMarker}
+                                                />
+                                                </>
+                                            )
+                                        }) : null
+                                }
+                                {
+                                    selected.glocation ?
+                                        (
+                                            <InfoWindow
+                                                position={selected.glocation}
+                                            >
+                                                <div className="mapProject">
+                                                    <Link to={selected.url}>
+                                                        <div className="mpImg">
+                                                            <img src={selected.img} />
+                                                        </div>
+                                                        <div className="mpData">
+                                                            <h3>{selected.name}</h3>
+                                                            <p className="mpadd">{selected.location}</p>
+                                                            <span className="mpprice">{selected.price}</span>
+                                                        </div>
+                                                        <p></p>
+                                                    </Link>
+                                                </div>
+                                            </InfoWindow>
+                                        ) : null
+                                }
+                                </>
+                                }
+                                </>
                             }
                         </GoogleMap>
                     </LoadScript>

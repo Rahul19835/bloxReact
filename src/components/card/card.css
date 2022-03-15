@@ -151,3 +151,13 @@
 .removefromLocal{
     display: none;
 }
+.pro-brif{
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: 10px;
+}
+.show-more,.show-less{
+    color: var(--theme-color);
+}
