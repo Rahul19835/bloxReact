@@ -122,7 +122,7 @@
     width: 100%;
 }
 .projeect-map{
-    display: block;
+    display: none;
     padding-left: 20px;
     filter: drop-shadow(2px 4px 6px rgb(13 38 59 / 12%));
     margin-top: 9px;
@@ -135,4 +135,24 @@
 .projeect-map .licon-sec, .listingmap{
     display: block;
     height: 100%;
+}
+.listingmap .map, .map{
+  height: 100%;
+}
+.listing-page .filter {
+  position: fixed;
+  width: 100%;
+  top: 50px;
+  margin: 0px;
+  background: var(--white);
+  padding: 5px 0px 0px;
+  z-index: 98;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.listing-page .dataList {
+  margin-top: 40px;
 }

@@ -250,7 +250,7 @@ const Home = () => {
                                     </div>
                                 )
                                 }
-                                <item></item>
+                             
                             </div>
                         </div>
                     </div>

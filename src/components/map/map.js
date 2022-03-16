@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useEffect, useContext } from "react";
 import mapMarker from '../../images/blox-medium.png';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { Link } from "react-router-dom";
-import './map.css';
 import {locations} from '../../data';
 import { execluveData as projectdata } from '../../data';
 import {MapContext} from "../contaxt/maps";
+import "./map.css";
 
 
 const ProjectMap = ({ variant, type}) => {
@@ -56,7 +56,7 @@ const ProjectMap = ({ variant, type}) => {
             :""
             }
             <div className={variant == 'listing' ? 'listingmap': 'lsec-right'}>
-                <div class="map" style={{ height:"100%" }}>
+                <div className="map" style={{ height:"100%" }}>
                     <LoadScript
                         googleMapsApiKey='AIzaSyDMBRr9IAiWpVRXb7Oo5RhNLC-rzQ5WGLU'>
                         <GoogleMap

@@ -86,11 +86,9 @@ const Projectlist = () => {
                                             }
                                         </div>
                                     </div>
-                                    {showmap &&
-                                        <div className="projeect-map">
-                                            <ProjectMap variant="listing" />
-                                        </div>
-                                    }
+                                    <div className={`projeect-map ${showmap ? 'show':''}`}>
+                                        <ProjectMap variant="listing" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
