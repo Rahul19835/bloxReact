@@ -138,19 +138,23 @@ export const FilterProvider = ({children}) => {
             "all" : [
                 {
                     "type": "AC Waiting Lobby",
-                    "value" : 1
+                    "value" : 1,
+                    "iconName" : 'ac-waiting-lobby'
                 },
                 {
                     "type": "Badminton Court(s)",
-                    "value" : 2
+                    "value" : 2,
+                    "iconName" : 'badminton-court'
                 },
                 {
                     "type": "Indoor Games",
-                    "value" : 3
+                    "value" : 3,
+                    "iconName" : 'indoor-games'
                 },
                 {
                     "type": "Party Hall",
-                    "value" : 4
+                    "value" : 4,
+                    "iconName" : 'party-hall'
                 },
 
             ],

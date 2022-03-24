@@ -121,6 +121,7 @@
 }
 .card-footer span {
     flex-basis: 49%;
+    margin: 0 2px;
 }
 .wishlist {
     position: absolute;

@@ -14,7 +14,7 @@ const Advancesearch = (props) => {
         setFilter({
             ...filter, "propertyType": {...filter.propertyType, "selected": filter.propertyType.all[index]}
         })
-        setisActive(!isActive)
+        //setisActive(!isActive)
     }
     const handleselectBhk = (index) => {
         if(filter.bhkType.selected.filter(type => type == filter.bhkType.all[index]).length === 0){
@@ -51,8 +51,8 @@ const Advancesearch = (props) => {
     return(
         <>
             <div className="advance-filter">
-                <div className="filtersDiv">
-                    <div className={`select-area  ${proDropdown ? "dropdownOpen" : ""}`} onClick={()=>setProDropdown(!proDropdown)}>
+                <div className="filtersDiv" onMouseEnter={()=>setProDropdown(!proDropdown)} onMouseLeave={()=>setProDropdown(!proDropdown)}>
+                    <div className={`select-area  ${proDropdown ? "dropdownOpen" : ""}`}>
                         <span className="selectValue">{filter.propertyType.selected ? filter.propertyType.selected : "Propert Type"}</span>
                         <input type="hidden" />
                     </div>
@@ -69,8 +69,8 @@ const Advancesearch = (props) => {
                     }
                 </div>
 
-                <div className="filtersDiv">
-                    <div className={`select-area  ${bhkDropdown ? "dropdownOpen" : ""}`} onClick={()=>setBhkDropdown(!bhkDropdown)}>
+                <div className="filtersDiv" onMouseEnter={()=>setBhkDropdown(!bhkDropdown)} onMouseLeave={()=>setBhkDropdown(!bhkDropdown)}>
+                    <div className={`select-area  ${bhkDropdown ? "dropdownOpen" : ""}`}>
                         <span className="selectValue">{filter.bhkType.selected.length !== 0 ? filter.bhkType.selected.map((slType, index)=><span key={index}>{slType.type}</span>): "BHK Type"}</span>
                         <input type="hidden" />
                     </div>
@@ -87,8 +87,8 @@ const Advancesearch = (props) => {
                     }
                 </div>
 
-                <div className="filtersDiv">
-                    <div className={`select-area  ${prizeRange ? "dropdownOpen" : ""}`} onClick={()=>setprizeRange(!prizeRange)}>
+                <div className="filtersDiv" onMouseEnter={()=>setprizeRange(!prizeRange)} onMouseLeave={()=>setprizeRange(!prizeRange)}>
+                    <div className={`select-area  ${prizeRange ? "dropdownOpen" : ""}`}>
                         <span className="selectValue">{filter.priceRange.selected ? filter.priceRange.selected.all : "Price Range"}</span>
                         <input type="hidden" />
                     </div>
@@ -128,8 +128,8 @@ const Advancesearch = (props) => {
                     }
                 </div>
 
-                <div className="filtersDiv">
-                    <div className={`select-area  ${possessionStatus ? "dropdownOpen" : ""}`} onClick={()=>setpossessionStatus(!possessionStatus)}>
+                <div className="filtersDiv" onMouseEnter={()=>setpossessionStatus(!possessionStatus)} onMouseLeave={()=>setpossessionStatus(!possessionStatus)}>
+                    <div className={`select-area  ${possessionStatus ? "dropdownOpen" : ""}`}>
                         <span className="selectValue">{filter.possessionStatus.selected.length !== 0 ? filter.possessionStatus.selected.map((possessionStatusType, index)=><span key={index}>{possessionStatusType.type}</span>): "Possession Status"}</span>
                         <input type="hidden" />
                     </div>
@@ -146,8 +146,8 @@ const Advancesearch = (props) => {
                     }
                 </div>
 
-                <div className="filtersDiv">
-                    <div className={`select-area  ${area ? "dropdownOpen" : ""}`} onClick={()=>setarea(!area)}>
+                <div className="filtersDiv" onMouseEnter={()=>setarea(!area)} onMouseLeave={()=>setarea(!area)}>
+                    <div className={`select-area  ${area ? "dropdownOpen" : ""}`}>
                         <span className="selectValue">{filter.area.selected.length !== 0 ? filter.area.selected.map((areaType, index)=><span key={index}>{areaType.type}</span>): "Area sq. ft."}</span>
                         <input type="hidden" />
                     </div>

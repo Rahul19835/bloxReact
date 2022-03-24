@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Card from '../../components/card/card';
 import Developerlist from '../../components/developer/developer';
 import Newslist from '../../components/news/news';
@@ -16,8 +16,10 @@ import { execluveData, developerData, news } from '../../data';
 const Home = () => {
     const [PPtype, setPPtype] = useState('affordable');
 
-    
-
+    useEffect(() => { 
+        document.querySelector("body").classList.remove("listing-page") 
+        document.querySelector("body").classList.add("home-page") 
+    },[]);
     const myHandler = () => {
         document.querySelectorAll('.side-list-item').forEach((element) => {
             element.classList.remove('active')

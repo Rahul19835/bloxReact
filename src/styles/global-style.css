@@ -189,22 +189,32 @@
   border-radius: 0px;
   transition: .5s ease;
 }
+
 .site-btn{
-  background-color: var(--medium-black);
-  color: var(--white);
-}
-.site-btn:hover{
-  border-color: var(--medium-black);
-  color: var(--medium-black);
-  background-color: transparent;
-}
-.site-btn2{
   border-color: var(--theme-color);
   color: var(--theme-color);
 }
-.site-btn2:hover{
+.site-btn:hover{
   background-color: var(--theme-color);
   color: var(--white);
+}
+.site-btn2{
+  background-color: var(--theme-color);
+  color: var(--white);
+}
+.site-btn2:hover{
+  border-color: var(--theme-color);
+  background: transparent;
+  color: var(--theme-color);
+}
+.site-btn3{
+  background-color: var(--medium-black);
+  color: var(--white);
+}
+.site-btn3:hover{
+  border-color: var(--medium-black);
+  color: var(--medium-black);
+  background-color: transparent;
 }
 .checkbox{position: relative;}
 .checkbox input[type=checkbox] {

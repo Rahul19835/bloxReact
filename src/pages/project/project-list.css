@@ -146,7 +146,7 @@
   margin: 0px;
   background: var(--white);
   padding: 5px 0px 0px;
-  z-index: 98;
+  z-index: 999;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;

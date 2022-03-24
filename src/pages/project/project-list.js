@@ -16,6 +16,7 @@ const Projectlist = () => {
     }
     useEffect(() => { 
         document.querySelector("body").classList.add("listing-page") 
+        document.querySelector("body").classList.remove("home-page") 
         setshowmap(!showmap);
     },[]);
 
